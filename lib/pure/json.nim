@@ -163,7 +163,7 @@ export
 export
   parsejson.JsonEventKind, parsejson.JsonError, JsonParser, JsonKindError,
   open, close, str, getInt, getFloat, kind, getColumn, getLine, getFilename,
-  errorMsg, errorMsgExpected, next, JsonParsingError, raiseParseErr, nimIdentNormalize
+  errorMsg, errorMsgExpected, next, JsonParsingError, raiseParseErr
 
 type
   JsonNodeKind* = enum ## possible JSON node types
