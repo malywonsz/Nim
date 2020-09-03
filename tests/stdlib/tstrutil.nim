@@ -433,3 +433,26 @@ block:
   doAssert a == f1
   doAssert b == f2
   doAssert c == f3
+
+
+# the following would have failed if it were part of a `block`
+type
+  Fork = enum
+    FkFrontier,
+    FkHomestead,
+    FkTangerine,
+    FkSpurious
+
+proc `$`(fork: Fork): string =
+  case fork
+  of FkFrontier: result = "Frontier"
+  of FkHomestead: result = "Homestead"
+  of FkTangerine: result = "Tangerine Whistle"
+  of FkSpurious: result = "Spurious Dragon"
+
+doAssert parseEnum[Fork]("Frontier") == FkFrontier
+doAssert parseEnum[Fork]("Frontier", FkSpurious) == FkFrontier
+doAssert parseEnum[Fork]("FkFrontier", FkSpurious) == FkSpurious
+doAssert parseEnum[Fork]("Tangerine Whistle") == FkTangerine
+doAssert parseEnum[Fork]("Tangerine Whistle", FkSpurious) == FkTangerine
+doAssert parseEnum[Fork]("Tangerine", FkSpurious) == FkSpurious
